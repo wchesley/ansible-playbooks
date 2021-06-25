@@ -1,0 +1,11 @@
+- hosts: Ubuntu
+  tasks:
+    - name: Update cache 
+      apt: 
+        force_apt_get=True
+        upgrade=dist 
+        update_cache=yes
+    - name: Upgrade all packages on servers
+      apt: 
+        name: "*"
+        state: latest

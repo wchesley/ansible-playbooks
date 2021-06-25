@@ -1,0 +1,6 @@
+- hosts: Ubuntu
+  tasks:
+    - name: Install apt
+      apt:
+        name: aptitude
+        state: latest
