@@ -1,0 +1,9 @@
+- hosts: Ubuntu
+  tasks:
+    - name: Update cache
+      copy:
+        src: /srv/apt-cache/01proxy
+        dest: /etc/apt/apt.conf.d/01proxy
+        group: root
+        owner: root
+        mode: u=rw,g=ro=r
