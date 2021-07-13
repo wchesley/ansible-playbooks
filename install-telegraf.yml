@@ -1,0 +1,36 @@
+- hosts: Ubuntu
+  tasks:
+    - name: Update Apt Cache
+      apt: 
+        update_cache: true
+        force_apt_get: true
+
+    - name: Install Telegraf
+      apt:
+        name: telegraf
+        state: latest
+
+    - name: Copy Env vars for telegraf
+      copy:
+        src: /root/playbooks/telegraf
+        dest: /etc/default/telegraf
+        owner: root
+        group: root
+        mode: 0644
+        backup: yes
+        force: yes
+
+    - name: Copy telegraf conf
+      copy: 
+        src: /root/playbooks/telegraf_template.yml
+        dest: /etc/telegraf/telegraf.conf
+        owner: root
+        group: root
+        mode: 0644
+        backup: no
+        force: yes
+
+    - name: restart telegraf
+      service: 
+        name: telegraf
+        state: restarted
