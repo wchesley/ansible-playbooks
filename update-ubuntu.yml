@@ -1,4 +1,5 @@
 - hosts: Ubuntu
+  order: inventory
   tasks:
     - name: Update cache 
       apt: 
